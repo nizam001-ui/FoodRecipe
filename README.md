@@ -19,7 +19,7 @@
 - Local storage for custom recipes
 
 ### Project Repository
-[Insert your public GitHub repository link]
+https://github.com/nizam001-ui/FoodRecipe
 
 ### Developed By
 Nizam ud din
