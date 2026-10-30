@@ -14,20 +14,30 @@ export default function WelcomeScreen() {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    ring1padding.value = 0;
-    ring2padding.value = 0;
-    setTimeout(
-      () => (ring1padding.value = withSpring(ring1padding.value + hp(5))),
-      100
-    );
-    setTimeout(
-      () => (ring2padding.value = withSpring(ring2padding.value + hp(5.5))),
-      300
-    );
 
-    setTimeout(() => navigation.navigate("Home"), 2500);
-  }, []);
+useEffect(() => {
+  ring1padding.value = 0;
+  ring2padding.value = 0;
+
+  const timer1 = setTimeout(() => {
+    ring1padding.value = withSpring(hp(5));
+  }, 100);
+
+  const timer2 = setTimeout(() => {
+    ring2padding.value = withSpring(hp(5.5));
+  }, 300);
+
+  const navigationTimer = setTimeout(() => {
+    navigation.replace("Home");
+  }, 2500);
+
+  return () => {
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearTimeout(navigationTimer);
+  };
+}, [navigation]);
+
 
   return (
     <View style={styles.container}>
